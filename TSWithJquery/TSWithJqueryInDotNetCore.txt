@@ -1,0 +1,28 @@
+Step 1 :
+Check IF npm -v gets  value than goto step 2 other wise run command :
+install-package npm -version 3.5.2
+Step 2 :
+install-package Jquery.Typescript.DefinitelyTyped -version 3.1.2
+
+Step 3 : 
+Add Package.json and Add below lines in the file 
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "devDependencies": {
+    "@types/jquery": "3.5.14"
+  }
+}
+
+Step 4 :
+
+Add new folder Named TS inside wwwroot-->lib-->
+
+Step 5 :
+
+Add new tsconfig.json and add "compileOnSave": true, in the file on top
+
+
+
+
