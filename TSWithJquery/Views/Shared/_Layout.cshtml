@@ -43,11 +43,13 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/ts/app.js"></script>
-    <script>
+    <script type="module">
+        //import { app } from "/lib/ts/app.js";
+        import { userModule } from "/lib/ts/userModule.js";
         (()=>{
-            getUser(); 
-            setUser();
+            var _app = new userModule();
+            _app.getUser();
+            _app.setUser();
         })();
     </script>
     @RenderSection("Scripts", required: false)

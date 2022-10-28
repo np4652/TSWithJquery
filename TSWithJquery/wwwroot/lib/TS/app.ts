@@ -1,5 +1,4 @@
-﻿
-export class app {
+﻿export class app {
     constructor() {
         console.log('app initialize')
     }

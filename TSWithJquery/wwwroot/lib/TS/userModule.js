@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { app } from "./app";
+import { app } from "./app.js";
 var userModule = /** @class */ (function (_super) {
     __extends(userModule, _super);
     function userModule() {

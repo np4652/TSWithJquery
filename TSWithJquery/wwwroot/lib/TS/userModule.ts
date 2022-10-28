@@ -1,10 +1,8 @@
-﻿import { app } from "./app";
-
+﻿import { app } from "./app.js";
 export class userModule extends app {
     constructor() {
-        super();
+        super()
     }
-
     setUser = () => {
         console.log('setUser')
     }
