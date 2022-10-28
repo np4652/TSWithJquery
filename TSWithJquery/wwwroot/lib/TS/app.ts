@@ -1,4 +1,5 @@
-﻿export class app {
+﻿import * as $ from "jquery";
+export class app {
     constructor() {
         console.log('app initialize')
     }

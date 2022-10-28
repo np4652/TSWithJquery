@@ -1,5 +1,6 @@
-﻿import { app } from "./app.js"; 
+﻿import { app } from "./app.js";
 let element: HTMLElement;
+let jQueryElement: JQuery<HTMLElement>;
 export class userModule extends app {
     constructor() {
         super()
@@ -7,5 +8,12 @@ export class userModule extends app {
     setUser = () => {
         element = document.getElementById("");
         console.log('setUser')
+    }
+    changeText = () => {
+        jQueryElement = $('#btnChangeText');
+        jQueryElement.click(e => {
+            e.preventDefault();
+            jQueryElement.text("Text Chnaged successfully!!!");
+        })
     }
 } 

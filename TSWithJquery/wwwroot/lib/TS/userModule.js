@@ -14,12 +14,22 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { app } from "./app.js";
+var element;
+var jQueryElement;
 var userModule = /** @class */ (function (_super) {
     __extends(userModule, _super);
     function userModule() {
         var _this = _super.call(this) || this;
         _this.setUser = function () {
+            element = document.getElementById("");
             console.log('setUser');
+        };
+        _this.changeText = function () {
+            jQueryElement = $('#btnChangeText');
+            jQueryElement.click(function (e) {
+                e.preventDefault();
+                jQueryElement.text("Text Chnaged successfully!!!");
+            });
         };
         return _this;
     }

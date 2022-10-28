@@ -5,4 +5,13 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p><a id="btnChangeText">Click here to change text</a></p>
 </div>
+
+@section scripts{
+    <script type="module">
+        import { userModule } from "/lib/ts/userModule.js";
+        var _app = new userModule();
+        _app.changeText();
+    </script>
+}
