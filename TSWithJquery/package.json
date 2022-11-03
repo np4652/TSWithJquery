@@ -4,11 +4,5 @@
   "private": true,
   "devDependencies": {
     "@types/jquery": "3.5.14"
-  },
-  "_moduleAliases": {
-    "@root": ".",
-    "@deep": "wwwroot/js/build/",
-    "@my_module": "lib/some-file.js",
-    "something": "src/foo" // Or without @. Actually, it could be any string
   }
 }
