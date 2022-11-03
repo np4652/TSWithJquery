@@ -7,7 +7,6 @@ export class userModule extends app {
     }
     setUser = () => {
         element = document.getElementById("");
-        console.log('setUser')
     }
     changeText = () => {
         jQueryElement = $('#btnChangeText');

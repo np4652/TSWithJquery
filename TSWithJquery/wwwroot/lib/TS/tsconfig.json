@@ -1,13 +1,15 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "types": ["jquery"],
+    //"outDir": "../../js/build",
+    "types": [ "jquery" ],
     "noImplicitAny": false,
     "noEmitOnError": true,
     "removeComments": false,
     "sourceMap": true,
     "module": "es6",
-    "target": "es5"
+    "target": "es5",
+    //"typeRoots": [ "./typings/" ]
   },
   "exclude": [
     "node_modules",
