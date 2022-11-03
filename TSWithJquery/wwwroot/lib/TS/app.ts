@@ -1,6 +1,6 @@
 ﻿import * as $ from "jquery";
 import { coreLib } from "./coreLib.js";
-import * as lib from './lib.js'; 
+import * as lib from './lib.js';
 
 export class app extends coreLib {
     constructor() {

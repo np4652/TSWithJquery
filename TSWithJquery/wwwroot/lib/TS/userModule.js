@@ -16,13 +16,13 @@ var __extends = (this && this.__extends) || (function () {
 import { app } from "./app.js";
 var element;
 var jQueryElement;
+var _ajax;
 var userModule = /** @class */ (function (_super) {
     __extends(userModule, _super);
     function userModule() {
         var _this = _super.call(this) || this;
         _this.setUser = function () {
             element = document.getElementById("");
-            console.log('setUser');
         };
         _this.changeText = function () {
             jQueryElement = $('#btnChangeText');
@@ -30,6 +30,11 @@ var userModule = /** @class */ (function (_super) {
                 e.preventDefault();
                 jQueryElement.text("Text Chnaged successfully!!!");
             });
+        };
+        _this._ajax = function (option) {
+            console.log('Hit ajax');
+            var res = $.ajax(option);
+            return res;
         };
         return _this;
     }
