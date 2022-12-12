@@ -24,5 +24,10 @@ Step 5 :
 Add new tsconfig.json and add "compileOnSave": true, in the file on top
 
 
+Step 6: npm i -D gulp webpack webpack-stream
+
+Step 7 : npm i -D babel-core babel-loader babel-preset-latest
+
+
 
 

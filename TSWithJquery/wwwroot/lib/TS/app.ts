@@ -1,6 +1,6 @@
 ﻿import * as $ from "jquery";
 import { coreLib } from "./coreLib.js";
-import * as lib from './lib.js';
+import { Q }  from './lib.js';
 
 export class app extends coreLib {
     constructor() {
@@ -9,7 +9,8 @@ export class app extends coreLib {
     }   
 
     getUser = () => {
-        lib.Q.getQueryString();
-        console.log('hit getUser 4321');
+        let qs = Q.getQueryString();
+        console.log(qs);
+        console.log('hit getUser');
     }
 }

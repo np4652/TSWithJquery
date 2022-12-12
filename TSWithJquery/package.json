@@ -3,6 +3,12 @@
   "name": "asp.net",
   "private": true,
   "devDependencies": {
-    "@types/jquery": "3.5.14"
+    "@types/jquery": "3.5.14",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^9.1.0",
+    "babel-preset-latest": "^6.24.1",
+    "gulp": "^4.0.2",
+    "webpack": "^5.75.0",
+    "webpack-stream": "^7.0.0"
   }
 }

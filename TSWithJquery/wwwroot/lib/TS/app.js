@@ -14,14 +14,15 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { coreLib } from "./coreLib.js";
-import * as lib from './lib.js';
+import { Q } from './lib.js';
 var app = /** @class */ (function (_super) {
     __extends(app, _super);
     function app() {
         var _this = _super.call(this) || this;
         _this.getUser = function () {
-            lib.Q.getQueryString();
-            console.log('hit getUser 4321');
+            var qs = Q.getQueryString();
+            console.log(qs);
+            console.log('hit getUser');
         };
         console.log('app initialize12345');
         return _this;
