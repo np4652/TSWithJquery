@@ -16,8 +16,6 @@ export class userModule extends app {
             jQueryElement.text("Text Chnaged successfully!!!");
         })
     }
-
-
     _ajax = (option: JQueryAjaxSettings): any => {
         console.log('Hit ajax');
         let res = $.ajax(option);

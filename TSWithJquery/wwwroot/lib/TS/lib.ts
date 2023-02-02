@@ -1,8 +1,5 @@
 ﻿
 export namespace Q {
-    function callDemo(): void {
-        alert('1')
-    }
 
     function htmlEncoder(a): string {
         switch (a) {
@@ -22,7 +19,6 @@ export namespace Q {
     }
 
     export function getQueryString(): any {
-        console.log('Hit QueryString')
         let queries = {};
         let url = document.location.search;
         if (url.trim() !== '') {
@@ -41,43 +37,37 @@ export namespace Q {
             indexed_array[n['name']] = n['value'] === 'on' ? true : n['value'];
         });
         return indexed_array;
-    }
+    }  
 
-    function geoLoaction(): void {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.geoSuccess);
+    export function numberToWords(number: number): string {
+        let digit = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+        let elevenSeries = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+        let countingByTens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+        let shortScale = ['', 'thousand', 'million', 'billion', 'trillion'];
+
+        let x = number?.toString().indexOf('.');
+        if (x == -1) x = number?.toString().length;
+        if (x > 15) return 'too big';
+        let n = number?.toString().split('');
+        let str = '';
+        let sk = 0;
+        for (let i = 0; i < x; i++) {
+            let cn = parseInt(n[i]);
+            if ((x - i) % 3 == 2) {
+                if (cn === 1) { str += elevenSeries[Number(n[i + 1])] + ' '; i++; sk = 1; }
+                else if (cn != 0) { str += countingByTens[cn - 2] + ' '; sk = 1; }
+            }
+            else if (cn != 0) {
+                str += digit[cn] + ' ';
+                if ((x - i) % 3 == 0) str += 'hundred '; sk = 1;
+            }
+            if ((x - i) % 3 == 1) { if (sk) str += shortScale[(x - i - 1) / 3] + ' '; sk = 0; }
         }
-
-        function geoSuccess(position) {
-            this.geoLoactionDetail.Latitude = position.coords.latitude;
-            this.geoLoactionDetail.Longitute = position.coords.longitude;
+        if (x != number.toString().length) {
+            var y = number.toString().length; str += 'point ';
+            for (var i = x + 1; i < y; i++) str += digit[n[i]] + ' ';
         }
-    };
-
-    function htmlToword(id: string): void {
-        //-------------------=======================================
-        let table = $('#' + id).find('table');
-        table.find('tr').each(function () {
-            $(this).css({ 'page-break-after': 'always' })
-            $(this).find('th').each(function () {
-                $(this).css({ 'vertical-align': 'top', 'line-height': '1.42857143', 'padding': '8px', 'border-bottom-width': '2px', 'border': '1px solid #ddd', 'border-spacing': '0', 'border-collapse': 'collapse' })
-            })
-            $(this).find('td').each(function () {
-                $(this).css({ 'vertical-align': 'top', 'line-height': '1.42857143', 'padding': '8px', 'border-bottom-width': '2px', 'border': '1px solid #ddd', 'border-spacing': '0', 'border-collapse': 'collapse' })
-            })
-        });
-        let header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
-            "xmlns:w='urn:schemas-microsoft-com:office:word' " +
-            "xmlns='http://www.w3.org/TR/REC-html40'>" +
-            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-        let footer = "</body></html>";
-        let sourceHTML = header + document.getElementById(id).innerHTML + footer;
-        let source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-        let fileDownload = document.createElement("a");
-        document.body.appendChild(fileDownload);
-        fileDownload.href = source;
-        fileDownload.download = 'document.doc';
-        fileDownload.click();
-        document.body.removeChild(fileDownload);
+        str = str.replace(/\number+/g, ' ');
+        return str.trim() + ".";
     }
 }

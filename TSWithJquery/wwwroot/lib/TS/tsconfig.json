@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "types": ["jquery"],
+    "types": [ "jquery" ],
     "noImplicitAny": false,
     "noEmitOnError": true,
     "removeComments": false,

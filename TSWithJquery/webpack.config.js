@@ -1,7 +1,11 @@
 // webpack.config.js
 module.exports = {
-    output: {
-        filename: 'bundle.js',
+    entry: {
+        home: './wwwroot/lib/ts/app.ts',
+    },
+    mode: 'production',
+    optimization: {
+        minimize: false
     },
     module: {
         rules: [
@@ -15,6 +19,19 @@ module.exports = {
                     ],
                 },
             },
+
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude:/node-modules/
+            }
         ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js']
+    },
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'wwwroot/js')
     },
 };

@@ -1,8 +1,5 @@
 export var Q;
 (function (Q) {
-    function callDemo() {
-        alert('1');
-    }
     function htmlEncoder(a) {
         switch (a) {
             case '&': return '&amp;';
@@ -19,7 +16,6 @@ export var Q;
         return text;
     }
     function getQueryString() {
-        console.log('Hit QueryString');
         var queries = {};
         var url = document.location.search;
         if (url.trim() !== '') {
@@ -40,41 +36,53 @@ export var Q;
         });
         return indexed_array;
     }
-    function geoLoaction() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.geoSuccess);
+    function numberToWords(number) {
+        var digit = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+        var elevenSeries = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+        var countingByTens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+        var shortScale = ['', 'thousand', 'million', 'billion', 'trillion'];
+        var x = number === null || number === void 0 ? void 0 : number.toString().indexOf('.');
+        if (x == -1)
+            x = number === null || number === void 0 ? void 0 : number.toString().length;
+        if (x > 15)
+            return 'too big';
+        var n = number === null || number === void 0 ? void 0 : number.toString().split('');
+        var str = '';
+        var sk = 0;
+        for (var i_1 = 0; i_1 < x; i_1++) {
+            var cn = parseInt(n[i_1]);
+            if ((x - i_1) % 3 == 2) {
+                if (cn === 1) {
+                    str += elevenSeries[Number(n[i_1 + 1])] + ' ';
+                    i_1++;
+                    sk = 1;
+                }
+                else if (cn != 0) {
+                    str += countingByTens[cn - 2] + ' ';
+                    sk = 1;
+                }
+            }
+            else if (cn != 0) {
+                str += digit[cn] + ' ';
+                if ((x - i_1) % 3 == 0)
+                    str += 'hundred ';
+                sk = 1;
+            }
+            if ((x - i_1) % 3 == 1) {
+                if (sk)
+                    str += shortScale[(x - i_1 - 1) / 3] + ' ';
+                sk = 0;
+            }
         }
-        function geoSuccess(position) {
-            this.geoLoactionDetail.Latitude = position.coords.latitude;
-            this.geoLoactionDetail.Longitute = position.coords.longitude;
+        if (x != number.toString().length) {
+            var y = number.toString().length;
+            str += 'point ';
+            for (var i = x + 1; i < y; i++)
+                str += digit[n[i]] + ' ';
         }
+        str = str.replace(/\number+/g, ' ');
+        return str.trim() + ".";
     }
-    ;
-    function htmlToword(id) {
-        //-------------------=======================================
-        var table = $('#' + id).find('table');
-        table.find('tr').each(function () {
-            $(this).css({ 'page-break-after': 'always' });
-            $(this).find('th').each(function () {
-                $(this).css({ 'vertical-align': 'top', 'line-height': '1.42857143', 'padding': '8px', 'border-bottom-width': '2px', 'border': '1px solid #ddd', 'border-spacing': '0', 'border-collapse': 'collapse' });
-            });
-            $(this).find('td').each(function () {
-                $(this).css({ 'vertical-align': 'top', 'line-height': '1.42857143', 'padding': '8px', 'border-bottom-width': '2px', 'border': '1px solid #ddd', 'border-spacing': '0', 'border-collapse': 'collapse' });
-            });
-        });
-        var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
-            "xmlns:w='urn:schemas-microsoft-com:office:word' " +
-            "xmlns='http://www.w3.org/TR/REC-html40'>" +
-            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-        var footer = "</body></html>";
-        var sourceHTML = header + document.getElementById(id).innerHTML + footer;
-        var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-        var fileDownload = document.createElement("a");
-        document.body.appendChild(fileDownload);
-        fileDownload.href = source;
-        fileDownload.download = 'document.doc';
-        fileDownload.click();
-        document.body.removeChild(fileDownload);
-    }
+    Q.numberToWords = numberToWords;
 })(Q || (Q = {}));
 //# sourceMappingURL=lib.js.map
